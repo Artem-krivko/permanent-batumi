@@ -810,9 +810,29 @@
       .hero-scroll { display: none; }
     }
 
-    /* ── FADE-IN ON SCROLL ── */
-    .reveal { opacity: 0; transform: translateY(28px); transition: opacity .7s ease, transform .7s ease; }
-    .reveal.visible { opacity: 1; transform: translateY(0); }
+    /* ── REVEAL ON SCROLL ── */
+    .reveal, .reveal-left, .reveal-right, .reveal-scale, .reveal-fade {
+      opacity: 0;
+      transition: opacity .8s cubic-bezier(.4,0,.2,1) var(--d,0s),
+                  transform .8s cubic-bezier(.4,0,.2,1) var(--d,0s);
+    }
+    .reveal       { transform: translateY(40px); }
+    .reveal-left  { transform: translateX(-50px); }
+    .reveal-right { transform: translateX(50px); }
+    .reveal-scale { transform: translateY(28px) scale(.96); }
+    .reveal-fade  { transform: none; }
+
+    .reveal-line {
+      opacity: 0;
+      transform: scaleX(0);
+      transform-origin: left center;
+      transition: opacity .5s ease var(--d,0s),
+                  transform .9s cubic-bezier(.4,0,.2,1) var(--d,0s);
+    }
+
+    .reveal.visible, .reveal-left.visible, .reveal-right.visible,
+    .reveal-scale.visible, .reveal-fade.visible { opacity: 1; transform: none; }
+    .reveal-line.visible { opacity: 1; transform: scaleX(1); }
 
     /* ── TELEGRAM FLOAT (mobile only) ── */
     .tg-float {
@@ -861,7 +881,8 @@
     /* ── REDUCED MOTION ── */
     @media (prefers-reduced-motion: reduce) {
       *, *::before, *::after { transition-duration: .01ms !important; animation-duration: .01ms !important; }
-      .reveal { opacity: 1; transform: none; }
+      .reveal, .reveal-left, .reveal-right, .reveal-scale,
+      .reveal-fade, .reveal-line { opacity: 1; transform: none; }
     }
 
     /* ── SEO: скрытый H1, виден поисковикам ── */
@@ -934,13 +955,13 @@
 
 <!-- SERVICES -->
 <section id="services">
-  <p class="section-label reveal">Что я делаю</p>
+  <p class="section-label reveal-fade">Что я делаю</p>
   <h2 class="reveal">Услуги и цены</h2>
-  <div class="divider reveal"></div>
+  <div class="divider reveal-line"></div>
 
   <div class="services-grid">
 
-    <div class="service-card reveal">
+    <div class="service-card reveal-scale" style="--d:0s">
       <div class="service-icon">✦</div>
       <div class="service-name">Брови</div>
       <p class="service-desc">Пудровые, волосковые, комбинированные техники. Естественный результат, идеально подходящий вашему типу лица.</p>
@@ -948,7 +969,7 @@
       <div class="service-note">коррекция до 60 дней — 150 лар</div>
     </div>
 
-    <div class="service-card reveal">
+    <div class="service-card reveal-scale" style="--d:.1s">
       <div class="service-icon">✦</div>
       <div class="service-name">Губы</div>
       <p class="service-desc">Акварельные губы, контур, полное прокрашивание. Объём и чёткость контура 24/7.</p>
@@ -956,7 +977,7 @@
       <div class="service-note">коррекция до 60 дней — 150 лар</div>
     </div>
 
-    <div class="service-card reveal">
+    <div class="service-card reveal-scale" style="--d:.2s">
       <div class="service-icon">✦</div>
       <div class="service-name">Стрелки</div>
       <p class="service-desc">Стрелки по верхнему веку — чёткая линия, которая подчёркивает взгляд и не требует ежедневного ухода.</p>
@@ -964,7 +985,7 @@
       <div class="service-note">коррекция до 60 дней — 150 лар</div>
     </div>
 
-    <div class="service-card reveal">
+    <div class="service-card reveal-scale" style="--d:.3s">
       <div class="service-icon">✦</div>
       <div class="service-name">Межресничка</div>
       <p class="service-desc">Межресничное заполнение — делает взгляд глубже и выразительнее без видимого макияжа.</p>
@@ -1001,27 +1022,27 @@
 
 <!-- PORTFOLIO -->
 <section id="portfolio">
-  <p class="section-label reveal">Мои работы</p>
+  <p class="section-label reveal-fade">Мои работы</p>
   <h2 class="reveal">Портфолио</h2>
-  <div class="divider reveal"></div>
+  <div class="divider reveal-line"></div>
 
   <div class="portfolio-grid" id="portfolio-grid">
-    <div class="portfolio-item" data-category="Брови">
+    <div class="portfolio-item reveal-scale" style="--d:0s" data-category="Брови">
       <img src="assets/work-1.jpeg" alt="Перманентный макияж бровей — работа мастера Екатерины в Батуми" loading="lazy" />
     </div>
-    <div class="portfolio-item" data-category="Губы">
+    <div class="portfolio-item reveal-scale" style="--d:.07s" data-category="Губы">
       <img src="assets/work-2.jpeg" alt="Перманентный макияж губ — работа мастера Екатерины в Батуми" loading="lazy" />
     </div>
-    <div class="portfolio-item" data-category="Стрелки">
+    <div class="portfolio-item reveal-scale" style="--d:.14s" data-category="Стрелки">
       <img src="assets/work-3.jpeg" alt="Перманентные стрелки — работа мастера Екатерины в Батуми" loading="lazy" />
     </div>
-    <div class="portfolio-item" data-category="Брови">
+    <div class="portfolio-item reveal-scale" style="--d:.21s" data-category="Брови">
       <img src="assets/work-4.jpeg" alt="Перманентный макияж бровей — работа мастера Екатерины в Батуми" loading="lazy" />
     </div>
-    <div class="portfolio-item" data-category="Межресничка">
+    <div class="portfolio-item reveal-scale" style="--d:.28s" data-category="Межресничка">
       <img src="assets/work-5.jpeg" alt="Межресничное заполнение — работа мастера Екатерины в Батуми" loading="lazy" />
     </div>
-    <div class="portfolio-item" data-category="Губы">
+    <div class="portfolio-item reveal-scale" style="--d:.35s" data-category="Губы">
       <img src="assets/work-6.jpeg" alt="Перманентный макияж губ — работа мастера Екатерины в Батуми" loading="lazy" />
     </div>
   </div>
@@ -1029,25 +1050,25 @@
 
 <!-- ABOUT -->
 <section id="about">
-  <div class="about-img-wrap reveal">
+  <div class="about-img-wrap reveal-left">
     <img src="assets/about.jpeg" alt="Екатерина — мастер перманентного макияжа в Батуми" />
   </div>
   <div class="about-text">
-    <p class="section-label reveal">Мастер</p>
-    <h2 class="reveal">Екатерина</h2>
-    <p class="reveal">Я занимаюсь перманентным макияжем более пяти лет. Моя работа — это не просто техника, это внимание к каждой детали вашего лица, к вашему стилю и желаниям.</p>
-    <p class="reveal">Работаю в Батуми, принимаю клиентов в уютной частной студии. Использую только сертифицированные пигменты и одноразовые расходники — безопасность и результат прежде всего.</p>
-    <p class="reveal">Постоянно обучаюсь у ведущих мастеров Европы. Специализируюсь на естественных, деликатных результатах — таких, что никто не догадается, что это перманент.</p>
-    <div class="about-stats reveal">
-      <div>
+    <p class="section-label reveal-fade">Мастер</p>
+    <h2 class="reveal-right">Екатерина</h2>
+    <p class="reveal-right" style="--d:.08s">Я занимаюсь перманентным макияжем более пяти лет. Моя работа — это не просто техника, это внимание к каждой детали вашего лица, к вашему стилю и желаниям.</p>
+    <p class="reveal-right" style="--d:.16s">Работаю в Батуми, принимаю клиентов в уютной частной студии. Использую только сертифицированные пигменты и одноразовые расходники — безопасность и результат прежде всего.</p>
+    <p class="reveal-right" style="--d:.24s">Постоянно обучаюсь у ведущих мастеров Европы. Специализируюсь на естественных, деликатных результатах — таких, что никто не догадается, что это перманент.</p>
+    <div class="about-stats">
+      <div class="reveal" style="--d:.1s">
         <div class="stat-num">10+</div>
         <div class="stat-label">лет опыта</div>
       </div>
-      <div>
+      <div class="reveal" style="--d:.25s">
         <div class="stat-num">2000+</div>
         <div class="stat-label">клиентов</div>
       </div>
-      <div>
+      <div class="reveal" style="--d:.4s">
         <div class="stat-num">4</div>
         <div class="stat-label">техники</div>
       </div>
@@ -1058,14 +1079,14 @@
 <!-- BOOKING -->
 <section id="booking">
   <div class="booking-inner">
-    <p class="section-label reveal">Готовы начать?</p>
+    <p class="section-label reveal-fade">Готовы начать?</p>
     <h2 class="reveal">Запись</h2>
-    <div class="divider reveal"></div>
-    <p class="reveal" style="color:var(--muted);font-size:.9rem;max-width:480px;margin:0 auto;">
+    <div class="divider reveal-line"></div>
+    <p class="reveal" style="--d:.08s;color:var(--muted);font-size:.9rem;max-width:480px;margin:0 auto;">
       Напишите мне в Telegram или Instagram — отвечу в течение нескольких часов, подберём удобное время.
     </p>
 
-    <div class="btn-row reveal">
+    <div class="btn-row reveal" style="--d:.18s">
       <!-- Замените @your_telegram на ваш Telegram-username -->
       <a href="https://t.me/+995595093706" class="btn btn-primary" target="_blank" rel="noopener" aria-label="Написать в Telegram">
         <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true">
@@ -1084,7 +1105,7 @@
       </a>
     </div>
 
-    <p class="booking-note reveal">Батуми · permanent-batumi.com</p>
+    <p class="booking-note reveal" style="--d:.28s">Батуми · permanent-batumi.com</p>
   </div>
 </section>
 
@@ -1164,17 +1185,33 @@
   });
 
   /* ── REVEAL ON SCROLL ── */
-  const reveals = document.querySelectorAll('.reveal');
+  const reveals = document.querySelectorAll('.reveal, .reveal-left, .reveal-right, .reveal-scale, .reveal-fade, .reveal-line');
   const observer = new IntersectionObserver(entries => {
     entries.forEach(e => {
       if (e.isIntersecting) {
         e.target.classList.add('visible');
+        const num = e.target.querySelector('.stat-num');
+        if (num) countUp(num);
         observer.unobserve(e.target);
       }
     });
   }, { threshold: 0.12 });
 
   reveals.forEach(el => observer.observe(el));
+
+  function countUp(el) {
+    const orig = el.textContent.trim();
+    const n = parseFloat(orig);
+    if (isNaN(n)) return;
+    const suffix = orig.replace(/[\d.]/g, '');
+    const dur = 1400, t0 = performance.now();
+    (function step(now) {
+      const p = Math.min((now - t0) / dur, 1);
+      const ease = 1 - Math.pow(1 - p, 3);
+      el.textContent = Math.floor(n * ease) + suffix;
+      if (p < 1) requestAnimationFrame(step); else el.textContent = orig;
+    })(t0);
+  }
 
   /* ── PORTFOLIO LIGHTBOX ── */
   const lbOverlay = document.getElementById('lb-overlay');
