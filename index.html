@@ -186,6 +186,18 @@
     }
     .hero-slide.active { opacity: 1; }
 
+    .slide-brows  { background-image: url('assets/brows.webp');  }
+    .slide-lips   { background-image: url('assets/lips.webp');   }
+    .slide-liner  { background-image: url('assets/liner.webp');  }
+    .slide-lashes { background-image: url('assets/lashes.webp'); }
+
+    @media (max-width: 767px) {
+      .slide-brows  { background-image: url('assets/brows-mob.webp');  }
+      .slide-lips   { background-image: url('assets/lips-mob.webp');   }
+      .slide-liner  { background-image: url('assets/liner-mob.webp');  }
+      .slide-lashes { background-image: url('assets/lashes-mob.webp'); }
+    }
+
     .hero-overlay {
       position: absolute;
       inset: 0;
@@ -890,10 +902,10 @@
 
 <!-- HERO -->
 <section id="hero">
-  <div class="hero-slide" style="background-image:url('assets/brows.png')"></div>
-  <div class="hero-slide" style="background-image:url('assets/lips.png')"></div>
-  <div class="hero-slide" style="background-image:url('assets/liner.png')"></div>
-  <div class="hero-slide" style="background-image:url('assets/lashes.png')"></div>
+  <div class="hero-slide slide-brows"></div>
+  <div class="hero-slide slide-lips"></div>
+  <div class="hero-slide slide-liner"></div>
+  <div class="hero-slide slide-lashes"></div>
   <div class="hero-overlay"></div>
 
   <div class="hero-center">
