@@ -315,7 +315,12 @@
     }
 
     /* ── SERVICES ── */
-    #services { background: var(--bg2); text-align: center; }
+    #services {
+      background:
+        radial-gradient(ellipse 85% 52% at 50% 108%, rgba(196,160,154,.11), transparent 64%),
+        var(--bg);
+      text-align: center;
+    }
 
     .services-grid {
       display: grid;
@@ -463,7 +468,9 @@
 
     /* ── ABOUT ── */
     #about {
-      background: var(--bg2);
+      background:
+        radial-gradient(ellipse 52% 68% at 8% 52%, rgba(139,100,96,.13), transparent 60%),
+        var(--bg);
       display: grid;
       grid-template-columns: 1fr 1fr;
       gap: 80px;
@@ -554,12 +561,9 @@
     #booking::before {
       content: '';
       position: absolute;
-      top: 50%;
-      left: 50%;
-      transform: translate(-50%,-50%);
-      width: 600px;
-      height: 600px;
-      background: radial-gradient(circle, rgba(139,100,96,.12), transparent 70%);
+      inset: 0;
+      background:
+        radial-gradient(ellipse 72% 80% at 50% 44%, rgba(196,160,154,.14), rgba(139,100,96,.06) 52%, transparent 72%);
       pointer-events: none;
     }
 
